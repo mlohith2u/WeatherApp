@@ -1,0 +1,117 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div style="background-color:lightgrey">
+  <div class="container">
+    <div class="col-md-12">
+      <h3 class="text-center my-4">Search for Weather</h3>
+      <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToweather(weatherSearchForm.value)">
+
+        <div class="form-group box">
+          <input class="form-control" type="text" id="weatherLocation" aria-describedby="weatherLocation"
+            placeholder="Enter Location" formControlName="location" />
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success btn-md">
+            Search for the weather
+          </button>
+        </div>
+      </form>
+    </div>
+    <h3>Example</h3>
+    <button type="submit" class="btn btn-success btn-md" (click)="Delhi()">
+      Delhi
+    </button>
+    &nbsp;
+
+    <button type="submit" class="btn btn-success btn-md" (click)="bangalore()">
+      Bangalore </button>
+
+
+      &nbsp;
+
+      <button type="submit" class="btn btn-success btn-md" (click)="london()">
+        london </button>
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+
+    <div class="col-md-12">
+      <h3 class="text-center my-4">Weather Details:</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Location Searched:
+            </th>
+            <th> {{weatherData.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Current weather conditions:</b></td>
+            <td>{{weatherData.weather[0].description}}</td>
+          </tr>
+          <tr>
+            <td><b>Temperature in Degrees Celsius:</b></td>
+            <td>{{celsius| number:'1.0-2'}}&#176; C</td>
+          </tr>
+          <tr>
+            <td> <b>Feels like in Degrees Celsius:</b>
+            </td>
+            <td> {{cfeelslike | number:'1.0-2'}}&#176; C
+            </td>
+          </tr>
+          <tr>
+            <td><b>Temperature in Degrees Farenheit:</b></td>
+            <td>{{fahrenheit | number:'1.0-2'}} &#176; F</td>
+          </tr>
+          <tr>
+            <td><b>Feels like in Degrees Farenheit:</b></td>
+            <td> {{ffeelslike | number:'1.0-2'}}&#176; F
+            </td>
+          </tr>
+          <tr>
+            <td><b>Humidity:</b></td>
+            <td> {{weatherData.main.humidity }} %
+            </td>
+          </tr>
+          <tr>
+            <td><b>Wind:</b></td>
+            <td> {{weatherData.wind.speed}} m/s
+            </td>
+          </tr>
+          <tr>
+            <td><b> Clouds:</b>
+            </td>
+            <td> {{weatherData.clouds.all}} %
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+<style>
+  .box {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 50%;
+    height: 40px;
+    text-align: center;
+  }
+
+  .box .container-1 input {
+    width: 100%;
+  }
+</style>
